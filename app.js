@@ -48,11 +48,14 @@
 const EventEmitter = require("events");
 // CLASS
 const emitter = new EventEmitter();
+let message = "Try some message";
 
 // Register a listener
-emitter.on("messageLogged", () => console.log("Listener called"));
+emitter.on("messageLogged", arg => console.log("Listener called", arg)); // e, eventArg
+emitter.on("logging", ({ data }) => console.warn("Logging data:", data));
 
 // Raise an event
-emitter.emit("messageLogged");
+emitter.emit("messageLogged", { id: 1, url: "http://" });
+emitter.emit("logging", { data: message });
 
 // Making a noise, produce - signalling
