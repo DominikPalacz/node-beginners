@@ -45,17 +45,21 @@
 //   err ? console.log("err  :", err) : console.log("files :", files);
 // });
 
-const EventEmitter = require("events");
 // CLASS
-const emitter = new EventEmitter();
-let message = "Try some message";
+const EventEmitter = require("events");
+// const emitter = new EventEmitter();
+
+const Logger = require("./logger");
+const logger = new Logger();
+let message = "Try some message from app.js";
 
 // Register a listener
-emitter.on("messageLogged", arg => console.log("Listener called", arg)); // e, eventArg
-emitter.on("logging", ({ data }) => console.warn("Logging data:", data));
+logger.on("messageLogged", arg => console.log("Listener called", arg)); // e, eventArg
+logger.on("logging", ({ data }) => console.warn("Logging data:", data));
 
-// Raise an event
-emitter.emit("messageLogged", { id: 1, url: "http://" });
-emitter.emit("logging", { data: message });
+logger.log(message);
+// // Raise an event
+// emitter.emit("messageLogged", { id: 1, url: "http://" });
+// emitter.emit("logging", { data: message });
 
 // Making a noise, produce - signalling
