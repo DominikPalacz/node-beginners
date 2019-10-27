@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 /**
  * To start use:
  * node app.js */
@@ -9,7 +10,6 @@
 /** Add new Module */
 
 /** Load module */
-
 const log = require("./logger");
 
 // console.log("module :", module);
